@@ -1,0 +1,1155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
+<title>g2k14: inside</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>g2k14: inside</h1>
+<span id="author">51t.ru</span><br />
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph"><p>Все персонажи являются вымышленными, а любое совпадение - случайным</p></div>
+<div class="paragraph"><p><em>от автора</em></p></div>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_g2k14">g2k14</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>g2k14 - это хакафон OpenBSD, который проходил в городе Любляна
+(Словения) с 8 по 14 июля.</p></div>
+<div class="paragraph"><p>Из отзывов участников мы можем узнать, в каком направлении развитие
+OpenBSD двигается и будет двигаться дальше. Это своего рода неформальные
+программные статьи, которые отвечают на вопрос "Как живёшь, OpenBSD?"</p></div>
+<div class="paragraph"><p>На этом мероприятии были замечены и два русских разработчика OpenBSD:
+Вадим Жуков (zhuk@) и Кирилл Бычков (kirby@)</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Важно</div>
+</td>
+<td class="content">Прорабатывается вопрос о представлении их к правительственным
+           наградам <strong>за участие!</strong></td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_вадим_жуков">Вадим Жуков</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_world_of_kde">World of KDE</h3>
+<div class="paragraph"><p>По горячим следам успешного хакафона, Вадим Жуков (zhuk@) отчитался о
+своих успехах:</p></div>
+<div class="paragraph"><p>Я прибыл на хакафон с коротким, но суровым списком задач:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Закончить KDE 4.13.2 и приготовить 4.13.3 (официальный анонс - 15 июля*)
+</p>
+</li>
+<li>
+<p>
+Наконец-то портировать несколько приложений из openbsd-wip в официальный cvs
+</p>
+</li>
+<li>
+<p>
+Исправить давнюю проблему с усиленным поеданием процессора в kded4
+</p>
+</li>
+<li>
+<p>
+Продолжить работу над Samba 4.x
+</p>
+</li>
+<li>
+<p>
+Исправить проблему с отсутствием ext2fs в установщике для amd64 (RAMDISK_CD)
+</p>
+</li>
+<li>
+<p>
+Некоторые вещи, которые я разбабатывал последние месяцы для ports/infrastructure, занести в CVS
+</p>
+</li>
+<li>
+<p>
+Занести в CVS порт man-pages-posix
+</p>
+</li>
+</ul></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Замечание</div>
+</td>
+<td class="content">* Разработчики KDE дают возможность мейнтейнерам пакетов с KDE в
+      той или иной ОС иметь т.н. предварительный доступ, где-то дней за
+      3-5 до официального релиза. Это позволяет выпускать "родные"
+      пакеты с KDE для ОС одновременно с официальным анонсом релиза.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Но прежде всего хакафон для вас начинается со знакомства с людьми, с
+которыми вы не были прежде знакомы. Учитывая, что до этого единственным
+мероприятием, связанным с OpenBSD, которое я посещал, была конференция
+EuroBSDCon 2013, на хакафоне было много новых лиц. Боюсь, что не
+запомнил их всех, но не потому, что я не уважаю их или их работу, это
+просто мой недостаток :)</p></div>
+<div class="paragraph"><p><strong>Итак, хакафон начался.</strong> Мы с kirby@ - другим портером OpenBSD из России
+- сели друг напротив друга. И это нам очень помогло - он помог мне
+тестить сборку ядра с ext2fs и дал мне идею насчёт <em>libinotify</em>
+(см. ниже),  я помог ему обновить порт rawtherapee.</p></div>
+<div class="paragraph"><p>Мой первый коммит на этом хакафоне был занесением в CVS
+<em>books/man-pages-posix</em>. Это полезная вещь для разработчиков, и я
+получил положительные отзывы ещё до того, как начал это импортирование.</p></div>
+<div class="paragraph"><p>Это был не столько мой труд, сколько schwarze@ и других разработчиков,
+давших большое количество отзывов и замечаний. Я узнал много нового о
+mandoc, groff и pkg_create во время работы над этим портом. Но, опять
+же, это было только для разгона.</p></div>
+<div class="paragraph"><p>Большую часть времени я сидел и делал четыре вещи: запускал make,
+твикал патчи, пушил их в апстрим и засыпал landry@ новыми портами.
+благодарен ему за терпение. Благодаря его отзывам*, у нас теперь есть
+следующие приложения из KDE4: <em>Calligra Suite</em>, <em>Digikam</em>, <em>K3b</em>,
+<em>Kdenlive</em>, <em>KDevelop</em>, <em>KMyMoney</em>, <em>KTorrent</em>, <em>Tellico</em> и <em>Yakuake</em>
+(вместе с зависимостями, типа Eigen 3.x).</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Замечание</div>
+</td>
+<td class="content">* Отзывы (ревью) могут быть и без замечаний, но без ревью
+      занесение в порты не делается.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Из портов, связанных с KDE4, в openbsd-wip осталась только
+audio/cantata: она имеет несколько кривую интеграцию с KDE4, так что мне
+быстро это надоело - плееров, в том числе для KDE4, и так хватает.
+Надеюсь, что Рафаэль Садовски, который постоянно мне помогал, не
+обидится. :)</p></div>
+<div class="paragraph"><p>Обновление KDE 4.13.2 само по себе скучно и неинтересно. Имеем 200+
+портов, значит, 200+ раз пишем
+<em>make configure update-plist port-lib-depends-check package clean</em>,
+отправляем несколько патчей в апстрим, закончили упражнение. Вот и всё.
+Реально всё. Трудными были задачи собственно портирования KDE4, а также
+совместного существования KDE3 и KDE4, а поддержка портов KDE4 не так
+сложна.</p></div>
+<div class="paragraph"><p>И вот пришло время для действительно интересненького. kded4. Если вы не
+в курсе подробностей: kded4 (что означает "KDE 4 Daemon") обычно
+запускается с kdeinit&#8230; то есть, либо в самом начале сессии kde,
+либо когда вы запускаете первое приложение KDE. Этот демон хостит так
+называемые модули KDE - Если вы видели services.exe в Windows, то вы
+понимаете, о чём я, это почти то же самое. Другая задача kded4 -
+мониторить файлы конфигурации, особенно связанные с MIME файлы
+.desktop. При установке/настройке/удалении приложения .destkop-файлы
+могут изменяться, как системные (в <em>/usr/local</em>), так и ваши личные
+(в <em>$KDEHOME</em>). Многие программы, особенно различные виджеты рабочего
+стола (читай: KDE-меню и подобное), заинтересованы в уведомлениях о
+таких изменениях. Таким образом, kded4 мониторит некоторые директории
+на предмет добавления/изменения/удаления .desktop-файлов.</p></div>
+<div class="paragraph"><p>В OpenBSD этот процесс был очень неэффективен. А причина в том, что
+kded4 внутри использует KDirWatch, который по умолчанию использует
+inotify в Linux и QFSWatch в других операционных системах. Он также
+поддерживает FAM, но я уже пытался его использовать, но результаты меня
+не удовлетворили. Я уже начал было думать о реализации бэкэнда на базе
+<em>kqueue(2)</em>, и тут я вспомнил, что kirby@ работает над libinofity.
+Это ведь то, что нужно - inotify API на базе kqueue. Так что я написал
+FindInotify.cmake который должен работать и в Linux и вне Linux, сделал
+несколько #ifdef в коде, пересобрал kdelibs &#8230; и вот оно! Теперь kded4
+проверяет файлы при запуске, и дальше живёт абсолютно не напрягаясь!</p></div>
+<div class="paragraph"><p>Ещё после этого akonadi_maildir_resource перестал жрать ресурсы: похоже,
+он страдал той же проблемой. Две проблемы по цене одной! Покупайте наши
+<em>libinotify</em>! *</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Важно</div>
+</td>
+<td class="content">* все пользователи KDirWatch теперь едят намного больше
+           файловых дескрипторов (до нескольких тысяч - по сути, по
+           дескриптору на каждый отслеживаемый каталог и файл). На
+           Linux эта проблема не так заметна, так как там обычно
+           банально не стоит никаких лимитов, или они задраны очень
+           высоко.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Кроме того, за время этого хакафона я успел закончить:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+новую утилиту portbump(1), в связке с sqlports она позволяет сэкономить много времени на масштабных обновлениях.
+</p>
+</li>
+<li>
+<p>
+добавил переменные TEST_ENV и ALL_TEST_ENV в bsd.port.mk: одного TEST_FLAGS было явно недостаточно, поскольку некоторые порты на CMake (читай: использующие Ninja) не понимают TEST_FLAGS вообще.
+</p>
+</li>
+<li>
+<p>
+документацию для devel/cmake и x11/kde4. Не имею намерения документировать x11/kde, потому что его больше никто не собирается поддерживать, а кто поддерживает сейчас, и так всё знает.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>К сожалению, не хватило времени на <em>samba4</em>. Есть хитрые проблемы,
+связанные с ld.so и компилятором, которые я надеялся исправить на
+хакафоне&#8230; но не всё сразу. Так или иначе, KDE был приоритетной
+задачей.</p></div>
+<div class="paragraph"><p>Также я не раз участвовал в дискуссиях и протестировал несколько патчей,
+летающих повсюду. И, даже в случае ошибок, мне доставлял радость тот
+факт, что я могу помочь другим разработчикам OpenBSD напрямую, что, как
+правило, проблематично в обычной жизни.</p></div>
+<div class="paragraph"><p>В заключение, я хочу (чувствую необходимость, обязан) сказать спасибо
+Мите Муженичу и гостевому дому "Табор" за организацию этого чудесного
+мероприятия. Это был мой первый хакафон, и было удивительно, сколько
+всего произошло за несколько дней. И Любляна - прекрасный город&#8230;
+Я надеюсь что кто-то, кто знает английский язык лучше меня, сможет ярче
+живоописать этот уютное место и его жителей. Всё было просто классно -
+спасибо, спасибо и еще раз спасибо!</p></div>
+</div>
+<div class="sect2">
+<h3 id="_отзывы_по_самому_мероприятию">Отзывы по самому мероприятию</h3>
+<div class="paragraph"><p><strong>Ааа, завидую! В хорошем смысле! А Тео там тоже был?</strong></p></div>
+<div class="paragraph"><p>Естественно. Это был ежегодный большой "всеобщий" хакатон.</p></div>
+<div class="paragraph"><p><strong>Можно ли поподробнее описать как проходят хакафоны?</strong><br />
+<strong>1) как туда попасть?</strong></p></div>
+<div class="paragraph"><p>Получить приглашение. :)</p></div>
+<div class="paragraph"><p><strong>2) много ли людей участвует</strong></p></div>
+<div class="paragraph"><p>Когда как. Статистика на <a href="http://www.openbsd.org/hackathons.html">http://www.openbsd.org/hackathons.html</a></p></div>
+<div class="paragraph"><p><strong>3) где все спят</strong></p></div>
+<div class="paragraph"><p>Обычно устроитель хакатона обеспечивает (сам или при финансовой помощи
+OpenBSD Foundation) места в каком-нибудь общежитии (ныне их хостелами
+кличут). Кто не хочет - селится сам в какой-нибудь гостинице.</p></div>
+<div class="paragraph"><p><strong>4) как общаются</strong></p></div>
+<div class="paragraph"><p>В основном на английском. :) Все в одной комнате, плюс есть общий чат
+(чтобы ор постоянный не стоял и друг друга не отвлекать от важных
+процессов слишком часто). Ну а локальные группки нередко формируются по
+языковому принципу, и там уже болтают на родном языке.</p></div>
+<div class="paragraph"><p><strong>5) сколько дней всё это длится</strong></p></div>
+<div class="paragraph"><p>Когда как, обычно - около недели. Опять же, статистику можно собрать по
+ссылке выше.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_theo_de_raadt_безопасность_и_конфигурашность">Theo de Raadt: безопасность и конфигурашность</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Лидер проекта OpenBSD Тео де Раадт (deraadt@) пишет об g2k14:</p></div>
+<div class="paragraph"><p>Две недели перед Словенией я работал с Бобом Беком (Bob Beck) над
+заменяющими getentropy(2) функциями. В начале хакафона были внесены
+последние штрихи, нужные Бобу и Бренту Куку (Brent Cook) для дальнейшей
+работы.</p></div>
+<div class="paragraph"><p>Затем пришло время разбираться с очередной проблемой безопасности, о
+которой мне стало известно. К нашему прискорбию выяснилось, что
+исчерпание ограничения на количество одновременно открытых файлов может
+быть использовано для сокрытия уведомлений о переполнении стека от
+соответствующего механизма защиты. Защитнику стека требуется файловый
+дескриптор, чтобы сообщить об ошибке. Те, кто уже читал заметки об
+arc4random и getentropy, уже в курсе данной ситуации.(*)</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Замечание</div>
+</td>
+<td class="content">* Речь об исчерпании лимита на количество открытых файлов, которое
+      в случае использования <em>syslog(3)</em> могло привести к тому, что
+      сообщения об ошибках не попадут в системный журнал. Дело в том,
+      что <em>syslog(3)</em> оперировал через открытие файла <em>/dev/log</em>, которое,
+      в случае исчерпания оных лимитов, становится невозможным.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Проблема стала очевидной из-за технологии "песочницы", используемой
+ныне в SSH-утилитах, которая закрыла <em>syslog_r()</em> доступ к <em>socket()</em>,
+<em>connect()</em>, <em>sendto()</em>&#8230; всем системным вызовам, необходимым для
+сообщения об ошибке, но потенциально опасным - что как раз "песочница"
+и должна предотвращать.</p></div>
+<div class="paragraph"><p>Задача была решена путём создания нового системного вызова, который
+может отправить сообщение в syslogd без использования лишних ресурсов;
+<em>syslog_r(3)</em> теперь использует его напрямую: один щелчок, выстрел,
+поехали дальше. Данный системный вызов имеет более чем узкое применение,
+и поэтому был назван <em>sendsyslog(2)</em>, и при этом он также подходит для
+специфических условий, таких как использование "песочницы".</p></div>
+<div class="paragraph"><p>В этом плане, ситуация схожа с тем, как <em>getentropy(2)</em> была вынесена из
+<em>sysctl</em>. Забавно, как одно приводит к другому.</p></div>
+<div class="paragraph"><p>В качестве передышки от пространства ядра, пришла пора для небольшой
+уборки и, надеюсь, улучшения в <em>/etc</em>, sysmerge и инструментах
+установки. Роберт и Антуан помогли спланировать практически пустой
+<em>/etc/rc</em>, эта работа ещё не окончена, но приведёт к улучшенному
+<em>sysmerge</em>. На других фронтах я работал с теми, кто занимается
+установочными скриптами и DRM, чтобы в нашем следующем релизе можно
+было автоматически по возможности прикрывать прямой доступ к
+оборудованию для X на поддерживаемых в этом плане чипсетах</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Замечание</div>
+</td>
+<td class="content">по сути это современные Intel - прим. ред.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>В остальное время хакафона я мелькал тут и там, как обычно, участвуя в
+проектах других разработчиков. Очень приятная и производительная неделя!</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_матье_херб_matthieu_о_развитии_x">Матье Херб (matthieu@) о развитии X</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Матье "бешеный француз" Херб (matthieu@), поддерживающий Xenocara,
+хочет поделиться своими впечатлениями о g2k14:</p></div>
+<div class="paragraph"><p>Я так и ничего и не сделал по моим остальным проектам
+(мультитач, DHCPv6), поскольку был отвлечен на твики наборов для X, по
+просьбе нескольких других участников. Результатом долгой дискуссии
+стало лишь добавление ucpp в базовую систему
+(после недолго пребывания в <em>/usr/xenocara/app/xrdb-cpp</em>)
+под именем <em>/usr/libexec/auxcpp</em>.</p></div>
+<div class="paragraph"><p>Причина в том, что xdrb (часть необходимой многим портам xbase) требует
+препроцессор C для запуска. Но, начиная с gcc4, /usr/bin/cpp находится в
+наборе comp, потому что это просто часть gcc. Получается, набор xbase
+требует установленного набора comp.</p></div>
+<div class="paragraph"><p>Есть два типа людей, которых это раздражает: люди с маленькими дисками,
+и люди с фобией "компилятор на сервере? непостижимо!"
+(хотя эти люди правы: <a href="http://www.welivesecurity.com/2014/03/18/operation-windigo-the-vivisection-of-a-large-linux-server-side-credential-stealing-malware-campaign/">http://www.welivesecurity.com/2014/03/18/operation-windigo-the-vivisection-of-a-large-linux-server-side-credential-stealing-malware-campaign/</a>)</p></div>
+<div class="paragraph"><p>Так что теперь auxcpp стал частью набора base. Прощай, зависимость xbase
+от comp. Текущее состояние наборов X Window сохранится и в 5.6. Помимо
+этого, я обновил несколько компонентов xenocara. Репозиторий xenocara
+практически готов для 5.6.</p></div>
+<div class="paragraph"><p>Но всё равно, мне понравился хакафон. Спасибо Мите и его команде за
+организацию, и всем благодетелям за пожертвования!</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_марк_эспи_espie_о_портах_и_пакетах">Марк Эспи (espie@) о портах и пакетах</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ещё один отчёт с завершившегося недавно хакатона g2k14, от Марка Эспи:</p></div>
+<div class="paragraph"><p>В Словении я был в первый раз. За несколько часов - к счастью, удалось
+избежать гроз - осмотрел столицу. Очень интересное соединение: никогда
+не видел подобной смеси из восточной Европы, южной Европы и
+туристических мест.</p></div>
+<div class="paragraph"><p>Что до самого хакафона, я прибыл на него вскоре после крупного изменения
+(переупорядоченные пакеты), и был практически готов исправлять проблемы
+в случае необходимости. К моему удивлению, всё работало как часы&#8230;
+Если я что-то и сломал, то никто этого не заметил; зато всем должно
+понравиться ускорение процесса обновления пакетов.</p></div>
+<div class="paragraph"><p>После продолжительного подпинывания, Вадим Жуков таки закоммитил
+<em>digikam-kde4</em> (порт Digikam для KDE4, - В.Ж.). Я провёл креш-сборку и
+информировал его о найденных проблемах, которые он быстро исправил.</p></div>
+<div class="paragraph"><p>Я работал над немногочисленными мелочами&#8230; столкнулся же со многими,
+и исправил чуть меньше после обычного слома дерева портов, связанного
+с нашими бесстрашными ломателями исходников (в основном негативные
+последствия были из-за <em>libressl</em>, <em>endian.h</em> и обновления mesa).</p></div>
+<div class="paragraph"><p>Я работал над новым механизмом, обеспечивающим лучшую целостность
+репозиториев пакетов. Пакет "quirks" теперь сообщает о дате своего
+подписывания (которая в свою очередь проверяется, поэтому подделать её
+не получится), благодаря чему теперь можно знать, что срез пакетов
+достаточно свеж, или же что кто-то помешал ему попасть на ваше любимое
+зеркало&#8230;</p></div>
+<div class="olist lowerroman"><ol class="lowerroman">
+<li>
+<p>
+а ещё пакет "quirks" содержит в себе список уязвимых версий пакетов,
+благодаря чему вы получите сигнал опасности, если вам требуется
+обновиться из-за уязвимости в старой версии и при этом новой версии
+пакета на зеркале нет.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Всё это лишь уведомляет пользователя, так как срезы пакетов требуют
+определённого времени для расползания по зеркалам&#8230; У нас есть идеи,
+как побороть ЭТУ проблему, но после обсуждения с вовлечёнными сторонами
+было принято решение отложить внедрение до следующего релиза в связи с
+необходимостью чересчур серьёзных переделок.</p></div>
+<div class="paragraph"><p>Я также пытался решить проблему с необходимостью наличия исходных
+текстовой базовой ОС для сборки пакета "pkglocatedb". К моему большому
+удивлению, Тео согласился, и мы зашли даже дальше, чем изначально
+планировалось, благодаря чему снапшоты теперь будут включать
+locate-базы как для базовой системы, так И для иксов.</p></div>
+<div class="paragraph"><p>Я провёл немало времени, играя с этими базами: теперь и pkg_check
+использует их, позволяя проверить систему полностью. По-прежнему слишком
+много лишних сообщений, но прогресс налицо.</p></div>
+<div class="paragraph"><p>Также я провёл немало времени за вычисткой устаревшего кода. Оно не так
+привлекательно, но, является, пожалуй, важнейшей частью процесса, так
+как при этом достигается уверенность в том, что мы не запускаем более
+не нужный и не поддерживаемый код&#8230;</p></div>
+<div class="paragraph"><p>Ещё я должен упомянуть о отдельном cpp (препроцессоре C - прим. ред.)
+для calendar и xrdb, теперь иксы не потребуют для своей работы установки
+базового набора comp.</p></div>
+<div class="paragraph"><p>Как обычно, встречаться лицом к лицу собратьев по разработке очень
+помогло некоторым проектам продвинуться вперёд.</p></div>
+<div class="paragraph"><p>Спасибо OpenBSD Foundation за спонсирование этого мероприятия, а также
+Мите за место, всё было организовано настолько хорошо, что нам даже не
+приходилось о чём-то задумываться.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_мартин_пеликан_pelikan_об_ext4_и_о_файловых_системах">Мартин Пеликан (pelikan@) об ext4 и о файловых системах</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Мартин Пеликан пишет в отчёте с g2k14:</p></div>
+<div class="paragraph"><p>Мой первоначальный план состоял в том, чтобы в нашей base мог собираться
+<em>libcpp</em> из LLVM, дав нам поддержку C++11. После того, как я читал о
+последних дополнениях локалей POSIX, другие разработчики прояснили, что
+будет нужно больше вариантов версии библиотеки, чтобы не сломать порты.
+После того, как первый diff был готов, я поднял сборку базовой системы,
+чтобы проверить, сломается ли она. <strong>И затем моя жизнь изменилась&#8230;</strong></p></div>
+<div class="paragraph"><p>За несколько дней до хакатона я решил поставить на свой ноутбук Linux,
+Windows и OpenBSD рядом друг за другом. Одна из связанных с локалями
+статей была оставлена на разделе с Linux, и я хотел открыть её в
+Австрии, которая просто полна тоннелей без интернета. Наше ядро не любит
+ext4; будучи слишком ленивым для перезагрузки, я решил "пришло то самое
+время", чтобы выяснить, почему.</p></div>
+<div class="paragraph"><p>Неудивительно. ext4 использует extents, которые в былые времена не
+поддерживались. Беглый взгляд на FreeBSD показал, что у них уже есть
+read-only поддержка, которая стала более-менее функциональной на моём
+ядре OpenBSD в среду вечером. Нет индексов каталога HTree, нет 64-битных
+номеров блоков, нет журналов или снапшотов, или защиты от
+мульти-монтирования. Но я мог наконец прочитать PDF без перезагрузки и
+затем даже скопировать файл, больше, чем 4 ГБ, или открыть каталог с
+50000 подкаталогов в нём. Никогда прежде не видя исходников файловой
+системы, я смог сделать рабочий порт за несколько часов?
+<strong>Жизнь прекрасна!</strong></p></div>
+<div class="paragraph"><p>Теперь вопрос состоял в том, как это интегрировать. Разработчики
+OpenBSD не любят гигантские diffы, и на это есть серьёзное основание.
+После починки формата inode и добавления новых флагов, Тед указал на
+древнее правило "кто последний полез в эту часть - тот теперь её
+мейнтейнер". Было очевидно, что я должен был получить больше знаний,
+читая тексты дизайна и код других систем, прежде чем смогу делать
+ценные и правильные коммиты. Устаревшие остатки, похожие на трудно
+(и неправильно) закодированный лимит размеров файлов были первыми.
+Части кода понимались с трудом, но FreeBSD удалось их разделить, так
+или иначе. После этого наши пути кода выглядели достаточно похожими,
+<strong>и поддержка ext4 ворвалась в нашу жизнь.</strong></p></div>
+<div class="paragraph"><p>Несмотря на то, что цель хакафона была в написании кода, я должен был
+буквально учиться работать с подсистемой, которую я видел до этого
+только однажды и мельком (c FUSE). Поскольку всё это уже было во
+FreeBSD, и заставить это работать было так просто, это было очень
+хорошее место, чтобы научиться писать код файловой системы самому. В
+течение следующих дней я начал с того, что написал парсинг и чтение
+журнала, а закончил тем, что сидел и сознательно ломал мою файловую
+систему, и смотрел, как она будет восстанавливаться и что для этого
+нужно ещё сделать. В общем, это верный путь, и цель - сделать поддержку
+записи.</p></div>
+<div class="paragraph"><p>Это было бы невозможно без Филипа Гуентэра, который рассмотрел мои
+diff-ы после того, как я продолжал отвлекать его от более важных дел.
+Тед, Тео, Кен и Боб дали мне много ценного и объяснили, как вещи должны
+работать. Стефан Сперлинг дал мне доступ к одной из его машин sparc64 и
+с удовольствием держал дерево актуальным, таким образом, мои поломки
+были относительно небольшими и незначительными. Обсуждения о сетевом
+стеке помогли сузить наш фокус в направлении и по поводу других решений.
+Митя занимался организацией встречи, чтобы дела шли так, как им и должно
+идти. Каждый всё сделал отлично, спасибо!</p></div>
+<div class="paragraph"><p>Будем надеяться, что этот энтузиазм насчёт файловой системы сохранится,
+потому что теперь я должен переключиться назад на
+<em>GSoC (Google Summer of Code)</em> - в задачи, которые мне знакомы. Надеюсь,
+что файловая система, сломанная у меня сейчас, когда-нибудь поможет
+починить вашу&#8230;</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Замечание</div>
+</td>
+<td class="content">эти слова оказались пророческими, и после этого мы с Мартином
+      вели обширную переписку о поломках. Р.Я.</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jonathan_gray_об_улучшении_драйверов_для_x">Jonathan Gray об улучшении драйверов для X</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Джонатан Грэй (jsg@) сообщил нам, почему он провёл 30 часов в автобусе,
+чтобы быть с нами:</p></div>
+<div class="paragraph"><p>Одной из первых вещей, которые я сделал в g2k14, был импорт обновления
+Mesa, над которым я теперь работал в течении некоторого времени. Я
+следил за git репозиторием Mesa несколько месяцев и отправлял патчи,
+чтобы уменьшить всю ту боль, причинённую локальным diffом, который не
+был таким большим, но приходилось тратить много времени на обновления.</p></div>
+<div class="paragraph"><p>Незадолго до хакафона я столкнулся с проблемой, заставляя Mesa
+собираться на i386, как бы то ни было. Это происходит только в том
+куске кода, который с помощью <em>sysctl</em> проверяет, включен ли SSE. Это,
+как оказалось, было проблемой, потому что <em>sysctl.h</em> включает в себя
+<em>utm_extern.h</em>, который, в свою очередь, берёт заголовочные файлы ядра,
+включая <em>mutex.h</em>, это означает, что <em>mtx_init()</em> из Mesa конфликтует с
+<em>mtx_init()</em> ядра. Тео потратил немного времени, вычищая <em>sysctl</em> и
+заголовки <em>utm</em>, таким образом, они не будут включать где-либо много
+определений. Эту работу уже закоммитили, когда я пришёл на хакафон.</p></div>
+<div class="paragraph"><p>На следующий день я сделал немного сборок xenocara, чтобы найти любые
+дополнительные проблемы. Проблема, которую я нашёл, происходила из-за
+симлинка в файл дистрибутива Mesa, который игнорировался <em>cvs import</em>,
+что починили ссылками из Make-файлов в другую директорию. Я также
+проверил дважды работоспособность сборок Mesa со включенным LLVM,
+который всё ещё работал через программный рендеринг LLVMpipe.</p></div>
+<div class="paragraph"><p>Другая проблема со сборками Mesa заключалась в том, что sys.mk,
+автоматически включаемый через make в Makefile, добавляет
+<em>CFLAGS</em> к <em>CXXFLAGS</em>. Поскольку Mesa является смесью C, которая
+включает и код C99, с C<code>, g</code> ругался на то, что к нему попадал
+C-специфичный флаг -std=c99. diff, который исправляет это в системных
+Make-файлах и некоторых других местах, будет потом отправлен по почте.</p></div>
+<div class="paragraph"><p>Я также проконтролировал, чтобы дерево исходников собиралось с
+<em>OPENSSL_NO_DEPRECATED</em>, который в большинстве случаев добавлял инклюды,
+которые больше автоматически не брались из других инклюдов. Для
+некоторых вещей, таких как nginx, которые поддерживаются извне, есть
+патчи, которые уже доступны в следующих версиях. Мы их потом возьмём,
+но пока что ещё не так уж и стоит патчить нашу версию, когда есть другие
+места в дереве (<em>libkeynote/bind/sendmail</em> и. т.д.), где требуется сделать
+изменения. Я также вскользь посмотрел на компиляцию с
+<em>OPENSSL_NO_SSL_INTERN</em>, но после того, как увидел, что <em>dc</em> и <em>gzsig</em>
+поломались во время сборки, я решил посмотреть в другие места.</p></div>
+<div class="paragraph"><p>Я посмотрел на обновление некоторых патчей clang, которые искал пару
+лет, и коммитил некоторые вещи, касающиеся этого.</p></div>
+<div class="paragraph"><p>Xorg теперь может работать без необходимости предоставлять прямой доступ
+из пространства пользователя к памяти ядра/устройства, если режим
+modesetting (<em>KMS</em>) ядра поддерживается. Проблема ещё заставляет
+некоторые устройства требовать доступ к этому окну памяти, чтобы
+запустился Xorg. Установщик задаёт вопрос, если находит vga устройство,
+которое включает окно через <em>machdep.allowaperture</em> в <em>sysctl</em>. После
+обсуждения с парой людей на g2k14 я написал небольшие скрипты, чтобы
+забирать номера поставщика/продукта PCI из драйверов radeondrm и
+inteldrm, которые используются pci вложением в vga драйвер, чтобы
+написать строчку в dmesg, если это окно памяти требуется для запуска
+Xorg. Установщик был изменён halex@ и rpe@, чтобы проверить эту строку
+и теперь будет только спрашивать, нужно ли человеку запускать X11
+(который включает окно), если оно найдено. Вопрос X11 не будет задан
+теперь на многих серверах, так как есть чёрный список серверных
+графических устройств в коде, решающем, нужен ли aperture.</p></div>
+<div class="paragraph"><p>Проблема, с которой я столкнулся теперь несколько раз, - это недостаток
+заголовка <em>cpuid.h</em>, который идёт из gcc &gt;= 4.3 и clang, чтобы
+обеспечить интерфейс, запрашивающий cpuid на i386 и amd64.
+Mesa из git теперь требует <em>cpuid.h</em> для сборки. Intel-овский драйвер
+Xorg отключает код, включённый в решение, если SSE присутствует, и
+делает решения, основанные на размерах кэша, если его нет. И, по
+крайней мере, некоторые порты (т.е. OpenXCOM), кажется, теперь его ждут.
+Таким образом, я взял <em>cpuid.h</em> из clang, чтобы включить его в нашу
+версию GCC 4.2.1. Сначала я изменил определения <em>SSE_4_1</em> и <em>SSE_4_2</em> на
+<em>SSE_41</em> и <em>SSE42</em>, чтобы соответствовать именам, используемым в GCC,
+но, вероятно, они оба будут включены, когда это закоммитят.</p></div>
+<div class="paragraph"><p>Большое спасибо OpenBSD Foundation и Мите за g2k14!</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_об_этом_документе">Об этом документе</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Перевод дополнительными лицензионными ограничениями не ограничивается, и равен лицензии оригинального текста.
+Какая лицензия на оригинальные интервью - понятия не имею, скорее всего - общественное достояние. Тогда
+и этот текст можно использовать, как вашей душеньке угодно: копировать, удалять, ругаться на него,
+заполнять им пустые места на веб-сайте, петь его хором. Нет, петь хором, пожалуй, нельзя, и пусть это будет
+единственное ограничение на распространение данного текста.</p></div>
+<div class="paragraph"><p>Авторы перевода: Роман Яковлев, Вадим Жуков, Виктор Феденев</p></div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Последнее обновление
+ 2014-09-26 15:25:33 VLAT
+</div>
+</div>
+</body>
+</html>
